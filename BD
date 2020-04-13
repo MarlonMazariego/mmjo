@@ -1,0 +1,112 @@
+create database dbinventario;
+use dbinventario;
+
+create table rol(
+idRol int not null primary key auto_increment,
+rol varchar(25)
+)engine InnoDB;
+
+create table estado(
+idEstado int not null primary key auto_increment,
+estado varchar(25)
+)engine InnoDB;
+
+create table categoria(
+idCategoria int not null primary key auto_increment,
+categoria varchar(100),
+idEstado int
+)engine InnoDB;
+
+create table razon(
+idRazon int not null primary key auto_increment,
+razon varchar(25),
+idEstado int
+)engine InnoDB;
+
+create table sucursal(
+idSucursal int not null primary key auto_increment,
+sucursal varchar(25),
+telefonoSucursal varchar(16),
+direccionSucursal varchar(500),
+idEstado int
+)engine InnoDB;
+
+create table proveedor(
+idProveedor int not null primary key auto_increment,
+proveedor varchar(25),
+telefonoProveedor varchar(16),
+direccionProveedor varchar(500),
+idEstado int
+)engine InnoDB;
+
+create table usuario(
+idUsuario int not null primary key auto_increment,
+usuario varchar(25),
+pass varchar(25),
+idEstado int,
+idRol int,
+constraint fk_usuario_rol foreign key (idRol) references rol(idRol) on delete cascade on update cascade)engine InnoDB;
+
+create table persona(
+idPersona int not null primary key auto_increment,
+nombre varchar(50),
+apellido varchar(50),
+fechaNacimiento date,
+dui varchar(11),
+nit varchar(16),
+telefono varchar(16),
+direccion varchar(500),
+idUsuario int,
+idSucursal int,
+constraint fk_persona_usuario foreign key (idUsuario) references usuario(idUsuario) on delete cascade on update cascade,
+constraint fk_persona_sucursal foreign key (idSucursal) references sucursal(idSucursal) on delete cascade on update cascade)engine InnoDB;
+
+create table articulo(
+idArticulo int not null primary key auto_increment,
+articulo varchar(40),
+precioCompra decimal(18,2),
+precioVenta decimal(18,2),
+stockMax int,
+stockMin int,
+descripcion varchar(150),
+idCategoria int,
+idProveedor int,
+idEstado int,
+constraint fk_articulo_categoria foreign key (idCategoria) references categoria(idCategoria) on delete cascade on update cascade,
+constraint fk_articulo_proveedor foreign key (idProveedor) references proveedor(idProveedor) on delete cascade on update cascade
+)engine InnoDB;
+
+create table inventario(
+idInventario int not null primary key auto_increment,
+cantidad int,
+idArticulo int,
+idSucursal int,
+constraint fk_inventario_articulo foreign key (idArticulo) references articulo(idArticulo) on delete cascade on update cascade,
+constraint fk_inventario_sucursal foreign key (idSucursal) references sucursal(idSucursal) on delete cascade on update cascade
+)engine InnoDB;
+
+create table bajas(
+idBajas int not null primary key auto_increment,
+idInventario int,
+cantidad int,
+idRazon int,
+comentario varchar(150),
+constraint fk_bajas_inventario foreign key (idInventario) references inventario(idInventario) on delete cascade on update cascade,
+constraint fk_bajas_razon foreign key (idRazon) references razon(idRazon) on delete cascade on update cascade
+)engine InnoDB;
+
+create table tipoRegistro(
+idTipoRegistro int not null primary key auto_increment,
+tipoRegistro varchar(50)
+)engine InnoDB;
+
+create table registro(
+idRegistro int not null primary key auto_increment,
+fecha date,
+hora time,
+idInventario int,
+idPersona int,
+cantidad int,
+constraint fk_registro_inventario foreign key (idInventario) references inventario(idInventario) on delete cascade on update cascade,
+constraint fk_registro_persona foreign key (idPersona) references persona(idPersona) on delete cascade on update cascade
+)engine InnoDB;
