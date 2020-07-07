@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entity;
+package entity;
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,135 +14,97 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Claudia Pineda
- */
+
 @Entity
-@Table (name = "persona")
+@Table(name = "persona")
 public class Persona implements Serializable{
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPersona;
+    private int id_persona;
+        
+    @Column(name = "nombres")
+    private String nombres;
     
-    @Column(name = "nombre")
-    private String nombrePer;
+    @Column(name = "apellidos")
+    private String apellidos;
     
-    @Column(name = "apellido")
-    private  String apellidoPer;
-    
+    @Column(name = "fechaNac")
     @Temporal(TemporalType.DATE)
-    @Column(name = "fechaNacimiento")
-    private Date fechaNaci;
+    private Date fechaNac;
     
-    @Column(name = "dui")
-    private  String dui;
-    
-    @Column(name = "nit")
-    private  String nit;
-    
-    @Column(name = "telefono")
-    private  String telPersona;
+    @Column(name = "telef")
+    private String telef;
     
     @Column(name = "direccion")
-    private  String direccPersona;
+    private String direccion;
     
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne
-    private  Usuario usuario;
-
-   @JoinColumn(name = "idSucursal", referencedColumnName = "idSucursal")
-   @ManyToOne
-   private Sucursal sucursal;
+    @JoinColumn(name = "id_user")    
+    private Usuario id_user;
 
     public Persona() {
     }
 
-    public int getIdPersona() {
-        return idPersona;
+    public int getId_persona() {
+        return id_persona;
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setId_persona(int id_persona) {
+        this.id_persona = id_persona;
     }
 
-    public String getNombrePer() {
-        return nombrePer;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombrePer(String nombrePer) {
-        this.nombrePer = nombrePer;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellidoPer() {
-        return apellidoPer;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellidoPer(String apellidoPer) {
-        this.apellidoPer = apellidoPer;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public Date getFechaNaci() {
-        return fechaNaci;
+    public Date getFechaNac() {
+        return fechaNac;
     }
 
-    public void setFechaNaci(Date fechaNaci) {
-        this.fechaNaci = fechaNaci;
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
-    public String getDui() {
-        return dui;
+    public String getTelef() {
+        return telef;
     }
 
-    public void setDui(String dui) {
-        this.dui = dui;
+    public void setTelef(String telef) {
+        this.telef = telef;
     }
 
-    public String getNit() {
-        return nit;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTelPersona() {
-        return telPersona;
+    public Usuario getId_user() {
+        return id_user;
     }
 
-    public void setTelPersona(String telPersona) {
-        this.telPersona = telPersona;
-    }
-
-    public String getDireccPersona() {
-        return direccPersona;
-    }
-
-    public void setDireccPersona(String direccPersona) {
-        this.direccPersona = direccPersona;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Sucursal getSucursal() {
-        return sucursal;
-    }
-
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setId_user(Usuario id_user) {
+        this.id_user = id_user;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.idPersona;
+        int hash = 5;
+        hash = 89 * hash + this.id_persona;
         return hash;
     }
 
@@ -162,7 +120,7 @@ public class Persona implements Serializable{
             return false;
         }
         final Persona other = (Persona) obj;
-        if (this.idPersona != other.idPersona) {
+        if (this.id_persona != other.id_persona) {
             return false;
         }
         return true;
@@ -170,10 +128,10 @@ public class Persona implements Serializable{
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + '}';
+        return "Persona{" + "id_persona=" + id_persona + '}';
     }
-
-   
-   
+    
+    
+    
     
 }

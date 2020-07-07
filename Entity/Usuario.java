@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entity;
+package entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -15,49 +10,44 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author Claudia Pineda
- */
+
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable{
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private int id_user;
     
     @Column(name = "usuario")
-    private  String user;
-    
+    private String usuario;
     
     @Column(name = "pass")
-    private  String pass;
+    private String pass;
     
-    @Column(name = "idEstado")
-    private  int idEstado;
-    
-    @JoinColumn(name = "idRol", referencedColumnName = "idRol")
     @ManyToOne
-    private  Rol rol;
+    @JoinColumn(name = "id_rol")    
+    private Rol id_rol;
+    
+    @Column(name = "estado")
+    private int estado;
 
     public Usuario() {
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPass() {
@@ -68,29 +58,29 @@ public class Usuario implements Serializable{
         this.pass = pass;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public Rol getId_rol() {
+        return id_rol;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setId_rol(Rol id_rol) {
+        this.id_rol = id_rol;
+    }
+    
+      public int getEstado() {
+        return estado;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.idUser;
+        int hash = 3;
+        hash = 31 * hash + this.id_user;
         return hash;
-    }
-
+    } 
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -103,7 +93,7 @@ public class Usuario implements Serializable{
             return false;
         }
         final Usuario other = (Usuario) obj;
-        if (this.idUser != other.idUser) {
+        if (this.id_user != other.id_user) {
             return false;
         }
         return true;
@@ -111,7 +101,7 @@ public class Usuario implements Serializable{
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUser=" + idUser + '}';
+        return "Usuario{" + "id_user=" + id_user + '}';
     }
     
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.io.Serializable;
@@ -13,44 +8,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-/**
- *
- * @author Saker
- */
 @Entity
-@Table(name = "rol")
-public class Rol implements Serializable{
+@Table(name = "especialidad")
+public class Especialidad implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_rol;
+    private int id_especialidad;
     
-    @Column(name = "rol")
-    private String rol;
+    @Column(name = "especialidad")
+    private String especialidad;
 
-    public Rol() {
+    public Especialidad() {
     }
 
-    public int getId_rol() {
-        return id_rol;
+    public int getId_especialidad() {
+        return id_especialidad;
     }
 
-    public void setId_rol(int id_rol) {
-        this.id_rol = id_rol;
+    public void setId_especialidad(int id_especialidad) {
+        this.id_especialidad = id_especialidad;
     }
 
-    public String getRol() {
-        return rol;
+    public String getEspecialidad() {
+        return especialidad;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id_rol;
+        hash = 17 * hash + this.id_especialidad;
         return hash;
     }
 
@@ -65,8 +55,8 @@ public class Rol implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rol other = (Rol) obj;
-        if (this.id_rol != other.id_rol) {
+        final Especialidad other = (Especialidad) obj;
+        if (this.id_especialidad != other.id_especialidad) {
             return false;
         }
         return true;
@@ -74,9 +64,8 @@ public class Rol implements Serializable{
 
     @Override
     public String toString() {
-        return "Rol{" + "id_rol=" + id_rol + '}';
+        return "Especialidad{" + "id_especialidad=" + id_especialidad + '}';
     }
-    
     
     
 }
